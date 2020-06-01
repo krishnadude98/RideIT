@@ -3,13 +3,16 @@ package com.hari.rideit.Controller
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
 import com.hari.rideit.Adapters.CategoryAdapter
+import com.hari.rideit.Adapters.ViewPageAdapter
 import com.hari.rideit.R
 import com.hari.rideit.Services.DataService
 import kotlinx.android.synthetic.main.content_main.*
@@ -20,6 +23,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navView: NavigationView
+    internal lateinit var viewPager:ViewPager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,6 +41,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         navView.setNavigationItemSelectedListener(this)
         adapter= CategoryAdapter(this,DataService.categories)
         contentGridView.adapter= adapter
+        viewPager=findViewById<View>(R.id.viewPager) as ViewPager
+        val adapter= ViewPageAdapter(this)
+        viewPager.adapter=adapter
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
