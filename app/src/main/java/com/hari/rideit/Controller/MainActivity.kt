@@ -1,4 +1,4 @@
-package com.hari.rideit
+package com.hari.rideit.Controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,9 +9,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.hari.rideit.Adapters.CategoryAdapter
+import com.hari.rideit.R
+import com.hari.rideit.Services.DataService
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener{
 
+    lateinit var adapter:CategoryAdapter
     lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navView: NavigationView
@@ -30,6 +35,8 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
+        adapter= CategoryAdapter(this,DataService.categories)
+        contentGridView.adapter= adapter
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
