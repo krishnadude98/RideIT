@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_gradient">
+
+    <ImageView
+        android:layout_width="145dp"
+        android:layout_height="143dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toTopOf="@+id/signup"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+
+        />
+
+    <LinearLayout
+        android:id="@+id/signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/signup_login_area"
+        android:padding="15dp"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SIGN UP"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="28sp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"
+
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="15dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="15dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginBottom="15dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Re-enter password"
+            android:inputType="textPassword"
+            android:layout_marginBottom="15dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:text="SIGN UP"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:layout_marginBottom="15dp"
+
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
