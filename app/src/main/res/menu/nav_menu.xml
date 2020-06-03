@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group>
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile"
-            android:title="Profile"/>
+            android:title="Login"
+            />
         <item
-            android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_messages"
-            android:title="Messages"/>
+            android:title="Don'T Have Account Signup"
+            android:icon="@drawable/add_signup"
+            android:id= "@+id/nav_Signup"/>
         <item
-            android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_friends"
-            android:title="Friends"/>
+            android:title="Share with Friends"
+            android:icon="@drawable/share_icon"
+            android:id= "@+id/nav_Share"/>
+        <item
+            android:title="Pls Rate Us"
+            android:icon="@drawable/rate_icon"
+            android:id= "@+id/nav_Rate"/>
+
     </group>
 
 
     <item android:title="Account Settings">
         <menu>
-            <item
-                android:id="@+id/nav_update"
-                android:icon="@drawable/ic_update"
-                android:title="Update Profile"/>
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_signout"
                 android:title="Sign Out"/>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/setting_icon"
+                android:title="Settings"/>
         </menu>
     </item>
 </menu>
