@@ -18,6 +18,7 @@
 
         tools:ignore="MissingConstraints" />
 
+
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -26,7 +27,7 @@
         android:src="@drawable/google"
         app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -35,16 +36,14 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="58dp"
-
-        android:src=""
+        android:src="@drawable/facebook"
         app:layout_constraintBottom_toTopOf="@+id/signup"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
+
+
 
     <LinearLayout
         android:id="@+id/signup"
