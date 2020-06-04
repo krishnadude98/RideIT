@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controller.SettingsActivity"></activity>
+        <activity android:name=".Controller.AccountSettingsActivity"></activity>
+        <activity android:name=".Controller.SettingsActivity" />
         <activity android:name=".Controller.LoginActivity" />
         <activity
             android:name=".Controller.MainActivity"
