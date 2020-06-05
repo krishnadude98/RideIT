@@ -13,20 +13,24 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:onClick="accountSettingsOnClick"
         android:text="Account Settings"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        tools:ignore="OnClick" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/languageBtn"
         android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:clickable="true"
         android:text="Language"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,44 +39,47 @@
         app:layout_constraintTop_toBottomOf="@+id/accountSettingsBtn" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/aboutUsBtn"
         android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:clickable="true"
         android:text="About Us"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/languageBtn" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/termsAndCondtionsBtn"
         android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Terms and condtions"
+        android:clickable="true"
+        android:text="Terms and Condtions"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/aboutUsBtn" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/privacyPolicyBtn"
         android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Privacy and policy"
+        android:clickable="true"
+        android:text="Privacy Policy"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/termsAndCondtionsBtn" />
 
     <TextView
         android:id="@+id/textView5"
