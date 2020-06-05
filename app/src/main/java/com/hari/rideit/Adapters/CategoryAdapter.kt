@@ -4,13 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.hari.rideit.R
 import com.hari.rideit.model.Category
 
-class CategoryAdapter(context:Context,categories:List<Category>):BaseAdapter(){
+class CategoryAdapter(context:Context,categories:List<Category>,val listener:CustomClickListener ):BaseAdapter(){
+    interface CustomClickListener { fun onClick(position: Int) }
     val context= context
     val categories= categories
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -23,6 +25,15 @@ class CategoryAdapter(context:Context,categories:List<Category>):BaseAdapter(){
         val resourceId =
             context.resources.getIdentifier(category.image, "drawable", context.packageName)
         categoryImage.setImageResource(resourceId)
+
+
+        categoryView.setOnClickListener {
+            listener.onClick(position)
+        }
+
+
+
+
         return categoryView
     }
 
@@ -39,4 +50,5 @@ class CategoryAdapter(context:Context,categories:List<Category>):BaseAdapter(){
     override fun getCount(): Int {
        return categories.count()
     }
+
 }
