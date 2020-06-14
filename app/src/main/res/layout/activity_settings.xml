@@ -85,7 +85,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+<<<<<<< HEAD
         android:text="Tap here to change your account related details"
+=======
+        android:text="Profile updation, Change password"
+>>>>>>> accountSettings
         android:textAlignment="viewStart"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/accountSettingsBtn"
