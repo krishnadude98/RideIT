@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "81112526331",
+    "project_id": "rideit-c4315",
+    "storage_bucket": "rideit-c4315.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81112526331:android:0a29f92aad3ea711092f5e",
+        "android_client_info": {
+          "package_name": "com.hari.rideit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81112526331-o84vbrutl9dmnqm0i7oofvu19kmielfl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo9w0R33go-RtthhR8vyHpjsCCDy8GdTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81112526331-o84vbrutl9dmnqm0i7oofvu19kmielfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

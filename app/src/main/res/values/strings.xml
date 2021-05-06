@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">RideIt</string>
     <string name="shareRide">Share Ride</string>
-    <string name="RentR">Coming Soon</string>
-    <string name="RentV">Coming Soon</string>
+    <string name="RentR">Rent a Rider</string>
+    <string name="RentV">Rent a Rider</string>
+
+
+    <string name="title_activity_maps">Map Fixed Location</string>
 </resources>

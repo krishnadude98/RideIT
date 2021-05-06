@@ -1,16 +1,13 @@
 package com.hari.rideit.Controller
 
-import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.GridView
-import android.widget.Toast
+import android.view.animation.AnimationUtils
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -21,8 +18,6 @@ import com.hari.rideit.Adapters.CategoryAdapter
 import com.hari.rideit.Adapters.ViewPageAdapter
 import com.hari.rideit.R
 import com.hari.rideit.Services.DataService
-import kotlinx.android.synthetic.main.content_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, CategoryAdapter.CustomClickListener{
 
@@ -37,12 +32,25 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //animation loading
+        val ttb= AnimationUtils.loadAnimation(this,R.anim.ttb)
+
+        val geadert= findViewById(R.id.home_conentmain) as TextView
+        val cattext= findViewById(R.id.contentGridView) as GridView
+
+
+
+        //start animation
+        geadert.startAnimation(ttb)
+        cattext.startAnimation(ttb)
+
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
         gridview= findViewById(R.id.contentGridView)
+
 
         val toggle = ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, 0, 0
@@ -54,15 +62,26 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         gridview.adapter= adapter
 
 
-
-
-
+        //added view pager
         viewPager=findViewById<View>(R.id.viewPager) as ViewPager
         val adapter= ViewPageAdapter(this)
         viewPager.adapter=adapter
     }
     override fun onClick(position:Int) {
-        Toast.makeText(context, position.toString(), Toast.LENGTH_LONG).show()
+
+        if(position==0){
+            val intent= Intent(this,ShareActivity::class.java)
+            startActivity(intent)
+        }
+        else if(position==1){
+            Toast.makeText(this,"Postion 1 clicked ",Toast.LENGTH_SHORT).show()
+        }
+        else if(position==2){
+            Toast.makeText(this,"Postion 2 clicked ",Toast.LENGTH_SHORT).show()
+        }
+        else if(position==3){
+            Toast.makeText(this,"Postion 3 clicked ",Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
