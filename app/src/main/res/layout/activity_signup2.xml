@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/logo_signup"
-        android:layout_width="145dp"
-        android:layout_height="143dp"
+        android:layout_width="129dp"
+        android:layout_height="111dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,69 +20,94 @@
 
     <LinearLayout
         android:id="@+id/signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="409dp"
+        android:layout_height="489dp"
         android:background="@drawable/signup_login_area"
+        android:orientation="vertical"
         android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
 
         >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:text="SIGN UP"
             android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="28sp"
             android:textAllCaps="true"
+            android:textColor="#000"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="15dp"
 
             />
 
         <EditText
             android:layout_width="match_parent"
+            android:id="@+id/name"
+
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:hint="Name"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="15dp"
-            />
+            android:inputType="textPersonName" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:layout_marginBottom="15dp"
             android:hint="E-mail"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="15dp"
-            />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:layout_marginBottom="15dp"
-            />
+            android:id="@+id/pass1"
+            android:inputType="textPassword" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Re-enter password"
-            android:inputType="textPassword"
             android:layout_marginBottom="15dp"
-            />
+            android:hint="Re-enter password"
+            android:id="@+id/pass2"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/Birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+
+            android:hint="DOB " />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_cloud_upload_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload DP" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/button_background"
             android:text="SIGN UP"
             android:textColor="#fff"
             android:textSize="22sp"
-            android:layout_marginBottom="15dp"
+            android:onClick="signupClicked"
 
             />
 
