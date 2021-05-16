@@ -71,7 +71,7 @@ class SignupActivity : AppCompatActivity() {
         private fun updateDisplay() {
             _editText.setText(
                 StringBuilder() // Month is 0 based so add 1
-                    .append(_day).append("/").append(_month + 1).append("/").append(_birthYear)
+                    .append(_birthYear).append("/").append(_month + 1).append("/").append(_day)
                     .append(" ")
             )
         }
@@ -114,7 +114,7 @@ class SignupActivity : AppCompatActivity() {
             val request =
                 object :JsonObjectRequest(Request.Method.POST,url,jsonObject,Response.Listener {res->
                     mdialog.hide()
-                    Toast.makeText(this,res.toString(),Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,res.getJSONObject("message").toString()+ " Pls Login",Toast.LENGTH_SHORT).show()
                     email.text.clear()
                     name.text.clear()
                     pass1.text.clear()

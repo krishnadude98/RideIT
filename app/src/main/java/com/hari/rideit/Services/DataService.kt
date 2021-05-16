@@ -11,5 +11,6 @@ object DataService {
     )
     var latitude:String=""
     var longitude:String=""
-    val jwttoken:String=""
+    var jwttoken:String=""
+
 }

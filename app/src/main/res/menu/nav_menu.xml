@@ -27,10 +27,7 @@
     <item android:title="Account Settings">
         <menu>
 
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_signout"
-                android:title="Sign Out"/>
+
             <item
                 android:id="@+id/settings"
                 android:icon="@drawable/setting_icon"

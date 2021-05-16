@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -18,6 +19,9 @@ import com.hari.rideit.Adapters.CategoryAdapter
 import com.hari.rideit.Adapters.ViewPageAdapter
 import com.hari.rideit.R
 import com.hari.rideit.Services.DataService
+import java.io.FileInputStream
+import java.io.InputStreamReader
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, CategoryAdapter.CustomClickListener{
 
@@ -29,7 +33,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     lateinit var gridview:GridView
     internal lateinit var viewPager:ViewPager
     val context= this
+    lateinit var jwt: String
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //animation loading
@@ -66,11 +72,77 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         viewPager=findViewById<View>(R.id.viewPager) as ViewPager
         val adapter= ViewPageAdapter(this)
         viewPager.adapter=adapter
+        if( intent.getStringExtra("JWT")!=null){
+            try{
+                val READ_BLOCK_SIZE=100
+                val fileIn: FileInputStream = openFileInput("mytextfile.txt")
+                val InputRead = InputStreamReader(fileIn)
+                val inputBuffer = CharArray(READ_BLOCK_SIZE)
+                var s: String? = ""
+                var charRead: Int=1
+                while (InputRead.read(inputBuffer).also({ charRead = it }) > 0) {
+                    // char to string conversion
+                    val readstring = String(inputBuffer, 0, charRead)
+                    s += readstring
+                }
+                InputRead.close()
+                DataService.jwttoken= s.toString()
+
+            }catch (err:Exception){
+
+            }
+
+            val navView:NavigationView= findViewById(R.id.nav_view)
+            navView.menu.clear()
+            navView.inflateMenu(R.menu.nav_menu_login)
+        }
+
+
+        else{
+            try {
+
+
+                val READ_BLOCK_SIZE = 100
+                val fileIn: FileInputStream = openFileInput("mytextfile.txt")
+                val InputRead = InputStreamReader(fileIn)
+                val inputBuffer = CharArray(READ_BLOCK_SIZE)
+                var s: String? = ""
+                var charRead: Int = 1
+                while (InputRead.read(inputBuffer).also({ charRead = it }) > 0) {
+                    // char to string conversion
+                    val readstring = String(inputBuffer, 0, charRead)
+                    s += readstring
+                }
+                InputRead.close()
+                DataService.jwttoken=s.toString()
+                val navView:NavigationView= findViewById(R.id.nav_view)
+                navView.menu.clear()
+                navView.inflateMenu(R.menu.nav_menu_login)
+
+            }catch (e:Exception){
+
+                val navView:NavigationView= findViewById(R.id.nav_view)
+                navView.menu.clear()
+                navView.inflateMenu(R.menu.nav_menu)
+            }
+
+
+        }
+
+
+
+
     }
+
     override fun onClick(position:Int) {
 
         if(position==0){
             val intent= Intent(this,ShareActivity::class.java)
+            if(DataService.jwttoken!=""){
+                intent.putExtra("JWT",DataService.jwttoken)
+
+            }
+
             startActivity(intent)
         }
         else if(position==1){
@@ -101,10 +173,14 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 Toast.makeText(this, "Rate clicked", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_logout -> {
-                Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
+                this.deleteFile("mytextfile.txt")
+                val intent= Intent(this,MainActivity::class.java)
+                startActivity(intent)
             }
+
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
 }
