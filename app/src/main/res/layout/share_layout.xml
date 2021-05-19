@@ -10,6 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:id="@+id/share_ad_view"
+        android:background="@color/white"
+
 
         android:orientation="vertical">
 
@@ -32,13 +35,15 @@
                     android:textColor="@color/black">
 
                 </TextView>
+
                 <TextView
+                    android:id="@+id/shareFrom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:textColor="@color/black"
                     android:textSize="16dp"
-                    tools:text="kollam"
-                    android:textColor="@color/black">
+                    tools:text="kollam">
 
                 </TextView>
             </LinearLayout>
@@ -54,13 +59,15 @@
                     android:textColor="@color/black">
 
                 </TextView>
+
                 <TextView
+                    android:id="@+id/shareTo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:textColor="@color/black"
                     android:textSize="16dp"
-                    tools:text="kollam"
-                    android:textColor="@color/black">
+                    tools:text="kollam">
 
                 </TextView>
             </LinearLayout>
@@ -88,13 +95,15 @@
                     android:textColor="@color/black">
 
                 </TextView>
+
                 <TextView
+                    android:id="@+id/shareDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:textColor="@color/black"
                     android:textSize="16dp"
-                    tools:text="kollam"
-                    android:textColor="@color/black">
+                    tools:text="kollam">
 
                 </TextView>
             </LinearLayout>
@@ -110,13 +119,15 @@
                     android:textColor="@color/black">
 
                 </TextView>
+
                 <TextView
+                    android:id="@+id/shareMinBid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    tools:text="10000"
+                    android:textColor="@color/black"
                     android:textSize="16dp"
-                    android:textColor="@color/black">
+                    tools:text="10000">
 
                 </TextView>
                 <TextView
@@ -163,6 +174,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/shareTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -181,7 +193,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date:"
                         android:textColor="@color/black"
                         android:textSize="16dp">
 
@@ -192,8 +203,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
-                        tools:text="kollam">
+                        android:textSize="16dp">
 
                     </TextView>
                 </LinearLayout>
@@ -227,6 +237,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/shareVehicleNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -252,6 +263,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/shareVehicleModel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -271,17 +283,28 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:weightSum="2">
+
                 <Button
+                    android:id="@+id/shareReviewBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:textColor="@color/white"
+                    android:background="@color/colorAccent"
+                    android:textSize="8dp"
                     android:layout_weight="1"
-                    android:shadowRadius="3sp"
                     android:text="Reviews">
 
                 </Button>
+
                 <Button
+                    android:id="@+id/shareViewBidsBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:textColor="@color/white"
+                    android:background="@color/colorAccent"
+                    android:textSize="8dp"
                     android:layout_weight="1"
                     android:text="view bids">
 
@@ -298,12 +321,15 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp">
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/bidsBtnAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+
                 android:text="Make a Bid" />
+
             <Button
+                android:id="@+id/shareViewMoreBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

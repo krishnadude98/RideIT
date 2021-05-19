@@ -16,7 +16,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/transparent_color"
         android:onClick="ShareYourBtnClicked"
-        android:text="Share Ride"
+        android:text="Share Own Ride"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFFFF"
         android:textSize="30sp"

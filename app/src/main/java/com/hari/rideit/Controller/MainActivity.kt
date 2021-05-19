@@ -174,6 +174,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.nav_logout -> {
                 this.deleteFile("mytextfile.txt")
+                DataService.jwttoken=""
                 val intent= Intent(this,MainActivity::class.java)
                 startActivity(intent)
             }
