@@ -59,10 +59,7 @@ class LoginActivity : AppCompatActivity() {
 
 
                     try {
-                        val fileout: FileOutputStream = openFileOutput("mytextfile.txt", MODE_PRIVATE)
-                        val outputWriter = OutputStreamWriter(fileout)
-                        outputWriter.write(res.getString("message"))
-                        outputWriter.close()
+
 
 
                         val flout:FileOutputStream= openFileOutput("email.txt", MODE_PRIVATE)
@@ -100,6 +97,10 @@ class LoginActivity : AppCompatActivity() {
                     else if(err is com.android.volley.TimeoutError ){
                         mdialog.hide()
                         Toast.makeText(this,"Check Network and try again",Toast.LENGTH_LONG).show()
+                    }
+                    else if(err is com.android.volley.ClientError ){
+                        mdialog.hide()
+                        Toast.makeText(this,"You don't have a account with us pls sign up",Toast.LENGTH_LONG).show()
                     }
                     else {
                         mdialog.hide()

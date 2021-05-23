@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         viewPager=findViewById<View>(R.id.viewPager) as ViewPager
         val adapter= ViewPageAdapter(this)
         viewPager.adapter=adapter
-        if( intent.getStringExtra("JWT")!=null){
+        if( intent.getStringExtra("JWT")==null){
             try{
                 val READ_BLOCK_SIZE=100
                 val fileIn: FileInputStream = openFileInput("mytextfile.txt")
@@ -87,14 +87,16 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 }
                 InputRead.close()
                 DataService.jwttoken= s.toString()
-
+                val navView:NavigationView= findViewById(R.id.nav_view)
+                navView.menu.clear()
+                navView.inflateMenu(R.menu.nav_menu_login)
             }catch (err:Exception){
-
+                val navView:NavigationView= findViewById(R.id.nav_view)
+                navView.menu.clear()
+                navView.inflateMenu(R.menu.nav_menu)
             }
 
-            val navView:NavigationView= findViewById(R.id.nav_view)
-            navView.menu.clear()
-            navView.inflateMenu(R.menu.nav_menu_login)
+
         }
 
 
@@ -102,19 +104,8 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             try {
 
 
-                val READ_BLOCK_SIZE = 100
-                val fileIn: FileInputStream = openFileInput("mytextfile.txt")
-                val InputRead = InputStreamReader(fileIn)
-                val inputBuffer = CharArray(READ_BLOCK_SIZE)
-                var s: String? = ""
-                var charRead: Int = 1
-                while (InputRead.read(inputBuffer).also({ charRead = it }) > 0) {
-                    // char to string conversion
-                    val readstring = String(inputBuffer, 0, charRead)
-                    s += readstring
-                }
-                InputRead.close()
-                DataService.jwttoken=s.toString()
+
+                DataService.jwttoken=intent.getStringExtra("JWT")
                 val navView:NavigationView= findViewById(R.id.nav_view)
                 navView.menu.clear()
                 navView.inflateMenu(R.menu.nav_menu_login)

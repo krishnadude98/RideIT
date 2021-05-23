@@ -44,4 +44,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/viewAdBtn"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:background="@android:drawable/screen_background_dark_transparent"
+        android:fontFamily="@font/aldrich"
+        android:onClick="ViewOwnAd"
+        android:text="View Your Ad"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

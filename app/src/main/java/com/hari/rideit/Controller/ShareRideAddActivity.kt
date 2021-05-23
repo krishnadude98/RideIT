@@ -242,7 +242,7 @@ class ShareRideAddActivity : AppCompatActivity() {
     }
     fun loginAlert(msg:String) {
         val alertdialog: AlertDialog.Builder = AlertDialog.Builder(this)
-        alertdialog.setTitle(msg)//for set Title
+        alertdialog.setTitle(msg+"y")//for set Title
         alertdialog.setMessage("pls go back to previos window")// for Message
         alertdialog.setIcon(R.drawable.ic_baseline_check_24) // for alert icon
         alertdialog.setPositiveButton("OK!") { dialog, id ->
