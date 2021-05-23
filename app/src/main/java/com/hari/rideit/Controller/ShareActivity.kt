@@ -211,7 +211,9 @@ class ShareActivity : AppCompatActivity() {
         RequestQueue.add(request2)
         val ispresent = sharedPreferences.getInt("ispresent", 0)
         if(ispresent==1){
-
+            val intent= Intent(this,AdDetailsActivity::class.java)
+            intent.putExtra("JWT",DataService.jwttoken)
+            startActivity(intent)
         }
         else{
             noAdAlert()
