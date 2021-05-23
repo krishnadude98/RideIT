@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -21,6 +22,8 @@ import com.leo.simplearcloader.ArcConfiguration
 import com.leo.simplearcloader.SimpleArcDialog
 import kotlinx.android.synthetic.main.activity_signup2.view.*
 import org.json.JSONObject
+import java.io.FileOutputStream
+import java.io.OutputStreamWriter
 import java.net.ConnectException
 import java.util.*
 
@@ -101,6 +104,7 @@ class SignupActivity : AppCompatActivity() {
             return
         }
         val url= "http://ec2-3-19-240-6.us-east-2.compute.amazonaws.com:3005/v1/account/register"
+        
         var mdialog: SimpleArcDialog = SimpleArcDialog(this)
         mdialog.setConfiguration(ArcConfiguration(this))
         mdialog.show()
@@ -114,12 +118,18 @@ class SignupActivity : AppCompatActivity() {
             val request =
                 object :JsonObjectRequest(Request.Method.POST,url,jsonObject,Response.Listener {res->
                     mdialog.hide()
-                    Toast.makeText(this,res.getJSONObject("message").toString()+ " Pls Login",Toast.LENGTH_SHORT).show()
+                    val fileout: FileOutputStream = openFileOutput("name.txt", MODE_PRIVATE)
+                    val outputWriter = OutputStreamWriter(fileout)
+                    outputWriter.write(name.text.toString())
+                    outputWriter.close()
+                    Toast.makeText(this,res.getString("message").toString()+ " Pls Login",Toast.LENGTH_SHORT).show()
                     email.text.clear()
                     name.text.clear()
                     pass1.text.clear()
                     pass2.text.clear()
                     date.text.clear()
+                    val intent= Intent(this,MainActivity::class.java)
+                    startActivity(intent)
                 }, Response.ErrorListener { err:VolleyError->
                     if(err is NetworkError || err.cause is ConnectException){
                         mdialog.hide()

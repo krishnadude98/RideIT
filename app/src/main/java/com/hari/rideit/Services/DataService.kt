@@ -13,4 +13,5 @@ object DataService {
     var longitude:String=""
     var jwttoken:String=""
 
+
 }

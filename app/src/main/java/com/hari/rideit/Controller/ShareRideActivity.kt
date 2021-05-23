@@ -2,6 +2,7 @@ package com.hari.rideit.Controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.ListView
 import android.widget.ScrollView
 import android.widget.Toast
@@ -10,6 +11,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.hari.rideit.Adapters.ShareAdapter
 import com.hari.rideit.R
+import com.hari.rideit.Services.DataService
 import com.hari.rideit.model.ShareRideModel
 import com.leo.simplearcloader.ArcConfiguration
 import com.leo.simplearcloader.SimpleArcDialog
@@ -21,6 +23,15 @@ class ShareRideActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share_ride)
+        try {
+            DataService.jwttoken = intent.getStringExtra("JWT")
+
+
+        }catch (err:Exception){
+            DataService.jwttoken=""
+
+        }
+
 
         getData()
     }
@@ -28,7 +39,9 @@ class ShareRideActivity : AppCompatActivity() {
         val shareview:ListView= findViewById(R.id.shareRides)
         lateinit var ShareModelList:ArrayList<ShareRideModel>
         ShareModelList= ArrayList<ShareRideModel>()
+
         val url="http://ec2-3-19-240-6.us-east-2.compute.amazonaws.com:3005/v1/share/"
+
         var mdialog: SimpleArcDialog = SimpleArcDialog(this)
         mdialog.setConfiguration(ArcConfiguration(this))
         mdialog.show()
@@ -61,7 +74,8 @@ class ShareRideActivity : AppCompatActivity() {
                         ShareModelList.add(shareRide)
 
                     }
-                    adapter= ShareAdapter(this,ShareModelList)
+
+                    adapter= ShareAdapter(this,ShareModelList,DataService.jwttoken)
                     shareview.adapter= adapter
 
 

@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Controller.ShareRideAddActivity"></activity>
+        <activity android:name=".Controller.BidAddActivity"></activity>
+        <activity android:name=".Controller.ShareRideAddActivity" />
         <activity android:name=".Controller.ShareRideActivity" />
         <activity android:name=".Controller.ShareActivity" />
         <!--

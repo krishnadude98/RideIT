@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
             return
         }
         val url= "http://ec2-3-19-240-6.us-east-2.compute.amazonaws.com:3005/v1/account/login"
+
         var mdialog: SimpleArcDialog = SimpleArcDialog(this)
         mdialog.setConfiguration(ArcConfiguration(this))
         mdialog.show()
@@ -55,14 +56,21 @@ class LoginActivity : AppCompatActivity() {
                 jsonObject,
                 Response.Listener { res ->
 
-                    email.text.clear()
-                    password.text.clear()
+
 
                     try {
                         val fileout: FileOutputStream = openFileOutput("mytextfile.txt", MODE_PRIVATE)
                         val outputWriter = OutputStreamWriter(fileout)
                         outputWriter.write(res.getString("message"))
                         outputWriter.close()
+
+
+                        val flout:FileOutputStream= openFileOutput("email.txt", MODE_PRIVATE)
+                        val owriter= OutputStreamWriter(flout)
+                        owriter.write(email.text.toString())
+                        owriter.close()
+                        email.text.clear()
+                        password.text.clear()
                         mdialog.hide()
                         //display file saved message
                         Toast.makeText(
