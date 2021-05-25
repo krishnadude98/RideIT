@@ -60,7 +60,10 @@ class LoginActivity : AppCompatActivity() {
 
                     try {
 
-
+                        val fileout: FileOutputStream = openFileOutput("mytextfile.txt", MODE_PRIVATE)
+                        val outputWriter = OutputStreamWriter(fileout)
+                        outputWriter.write(res.getString("message"))
+                        outputWriter.close()
 
                         val flout:FileOutputStream= openFileOutput("email.txt", MODE_PRIVATE)
                         val owriter= OutputStreamWriter(flout)

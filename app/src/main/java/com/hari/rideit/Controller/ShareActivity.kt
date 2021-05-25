@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -24,6 +25,7 @@ import java.net.ConnectException
 
 class ShareActivity : AppCompatActivity() {
     private val sharedPrefFile = "kotlinsharedpreference"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share)
@@ -54,11 +56,15 @@ class ShareActivity : AppCompatActivity() {
 
                 DataService.jwttoken= ""
             }
+
         }
+
 
 
     }
      fun ShareYourBtnClicked(view: View){
+
+
         if(DataService.jwttoken==""){
             loginAlert()
             return
@@ -173,21 +179,54 @@ class ShareActivity : AppCompatActivity() {
         val myid = sharedPreferences.getString("id", "0")
 
         val url3="http://ec2-3-19-240-6.us-east-2.compute.amazonaws.com:3005/v1/share/"
+        var jsoobj:JSONObject
         val request2= object :JsonArrayRequest(Request.Method.GET,url3,null,Response.Listener { res->
-
+            var ispresent=0
             for(i in 0 until res.length()){
                 val shareride: JSONObject = res.getJSONObject(i)
                 if(myid==shareride.getString("accountid")){
-
+                    mdialog.hide()
                     val editor: SharedPreferences.Editor =  sharedPreferences.edit()
+                    ispresent=1
                     editor.putInt("ispresent",1)
                     editor.apply()
                     editor.commit()
 
-                    break
+                    jsoobj= shareride
+
+                    val ispresent = sharedPreferences.getInt("ispresent", 0)
+                    if(ispresent==1){
+                        val intent= Intent(this,AdDetailsActivity::class.java)
+
+                        intent.putExtra("JWT",DataService.jwttoken)
+                        intent.putExtra("from",jsoobj.getString("from"))
+                        intent.putExtra("to",jsoobj.getString("to"))
+                        val date:String= jsoobj.getString("date")
+                        var tem=""
+                        for(i in 0..9){
+                            tem= tem+date[i]
+                        }
+                        intent.putExtra("date",jsoobj.getString("to"))
+                        intent.putExtra("vehicleno",jsoobj.getString("vehicleno"))
+                        intent.putExtra("vehiclemodel",jsoobj.getString("vehiclemodel"))
+                        intent.putExtra("eamount",jsoobj.getString("eamount"))
+                        intent.putExtra("id",jsoobj.getString("_id"))
+                        intent.putExtra("time",jsoobj.getString("time"))
+                        startActivity(intent)
+                        break
+                    }
+
                 }
 
             }
+                if(ispresent==0){
+                    mdialog.hide()
+                    noAdAlert()
+                }
+
+
+
+
 
         },Response.ErrorListener { err:VolleyError->
             if (err is NetworkError || err.cause is ConnectException) {
@@ -209,15 +248,7 @@ class ShareActivity : AppCompatActivity() {
 
 
         RequestQueue.add(request2)
-        val ispresent = sharedPreferences.getInt("ispresent", 0)
-        if(ispresent==1){
-            val intent= Intent(this,AdDetailsActivity::class.java)
-            intent.putExtra("JWT",DataService.jwttoken)
-            startActivity(intent)
-        }
-        else{
-            noAdAlert()
-        }
+
 
     }
     fun noAdAlert(){
@@ -225,15 +256,10 @@ class ShareActivity : AppCompatActivity() {
         alertdialog.setTitle("You Don't have a Advertisement pls create one to see")//for set Title
         alertdialog.setMessage("Create one advertisement by clicking share own ride button")// for Message
         alertdialog.setIcon(R.drawable.ic_baseline_new_releases_24) // for alert icon
-        alertdialog.setPositiveButton("Yes") { dialog, id ->
-            val intent= Intent(this,LoginActivity::class.java)
-            startActivity(intent)
+        alertdialog.setPositiveButton("OK!") { dialog, id ->
+
         }
-        alertdialog.setNegativeButton("Cancel") { dialog, id ->
-            // set your desired action here.
-            val intent= Intent(this,ShareActivity::class.java)
-            startActivity(intent)
-        }
+
         val alert = alertdialog.create()
         alert.setCanceledOnTouchOutside(false)
         alert.show()

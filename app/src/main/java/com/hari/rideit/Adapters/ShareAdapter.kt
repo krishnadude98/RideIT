@@ -5,13 +5,11 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.*
@@ -102,6 +100,19 @@ class ShareAdapter(context:Context,shareride:List<ShareRideModel>,jwttoken:Strin
         bidsBtn.setOnClickListener(){
             Toast.makeText(context,"Bids Btn Clicked",Toast.LENGTH_SHORT).show()
         }
+        fun loginAlert(msg:String) {
+            val alertdialog: androidx.appcompat.app.AlertDialog.Builder = androidx.appcompat.app.AlertDialog.Builder(context)
+            alertdialog.setTitle(msg)//for set Title
+            alertdialog.setMessage("pls go back to previos window")// for Message
+            alertdialog.setIcon(R.drawable.ic_baseline_check_24) // for alert icon
+            alertdialog.setPositiveButton("OK!") { dialog, id ->
+
+            }
+
+            val alert = alertdialog.create()
+            alert.setCanceledOnTouchOutside(false)
+            alert.show()
+        }
 
         bidbtnadd.setOnClickListener(){
             val myview= LayoutInflater.from(context).inflate(R.layout.make_bid_layout,null)
@@ -109,23 +120,26 @@ class ShareAdapter(context:Context,shareride:List<ShareRideModel>,jwttoken:Strin
             val maalertDialog= mbuilder.show()
 
 
-            myview.bidBtnCliked.setOnClickListener {
+            myview.bidBtna.setOnClickListener {
 
-                val amount=myview.bidAmt.text.toString()
-                val phone= myview.num.text.toString()
-                if(TextUtils.isEmpty(amount)||TextUtils.isEmpty(phone)) {
-
-                    Toast.makeText(context,"Pls Fill Both Fields!",Toast.LENGTH_LONG)
+                val BidValue:EditText=myview.findViewById(R.id.bidAmt)
+                val phone:EditText= myview.findViewById(R.id.phonenum)
+                Log.d("VALUE",BidValue.text.toString())
+                Log.d("NUM",phone.text.toString())
+                if(TextUtils.isEmpty(BidValue.text.toString())||TextUtils.isEmpty(phone.text.toString())) {
+                    Log.d("ISEMPTY","Inside if")
+                    Toast.makeText(context,"Pls Fill Both Fields!",Toast.LENGTH_LONG).show()
                 }
                 else{
-                    maalertDialog.dismiss()
+                    maalertDialog.hide()
+                    Log.d("ISNOTEMPTY","Inside else")
                     val url =
                         "http://ec2-3-19-240-6.us-east-2.compute.amazonaws.com:3005/v1/share/bidders/add/${ride.id}"
 
                     try {
                         val jsonObject = JSONObject()
-                        jsonObject.put("bid", amount.toInt())
-                        jsonObject.put("userid",phone)
+                        jsonObject.put("bid", BidValue.text.toString().toInt())
+                        jsonObject.put("userid",phone.text.toString())
 
                         try{
                             val READ_BLOCK_SIZE=100
@@ -159,6 +173,7 @@ class ShareAdapter(context:Context,shareride:List<ShareRideModel>,jwttoken:Strin
                                     jsonObject,
                                     Response.Listener { res ->
 
+                                        loginAlert(res.getString("message"))
 
                                     },
                                     Response.ErrorListener { err: VolleyError ->
@@ -204,6 +219,7 @@ class ShareAdapter(context:Context,shareride:List<ShareRideModel>,jwttoken:Strin
 
             }
         }
+
 
 
         return shareRideView
