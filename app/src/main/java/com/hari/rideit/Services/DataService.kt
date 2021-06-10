@@ -9,8 +9,8 @@ object DataService {
         Category("Rent a Rider","cat3"),
         Category("Suggestions?","cat4")
     )
-    var latitude:String=""
-    var longitude:String=""
+    var latitude:Double= 0.0
+    var longitude:Double= 0.0
     var jwttoken:String=""
 
 

@@ -103,7 +103,7 @@
                     android:layout_marginStart="8dp"
                     android:textColor="@color/black"
                     android:textSize="16dp"
-                    tools:text="kollam">
+                    >
 
                 </TextView>
             </LinearLayout>

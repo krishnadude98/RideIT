@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Contact Details Of Bidder"
+        android:text="Contact Details"
         android:textColor="@color/black"
         android:textSize="18dp" />
 
@@ -26,11 +26,11 @@
         <TextView
             android:id="@+id/textView10"
             android:layout_width="30dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:textSize="18dp"
-            android:text="Name Of Bidder" />
+            android:text="Name:"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/nameB"

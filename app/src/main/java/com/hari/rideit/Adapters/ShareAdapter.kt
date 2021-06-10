@@ -3,7 +3,9 @@ package com.hari.rideit.Adapters
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,12 +15,15 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.*
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.hari.rideit.Controller.ShareActivity
 import com.hari.rideit.R
 import com.hari.rideit.Services.DataService
 import com.hari.rideit.model.ShareRideModel
+import com.leo.simplearcloader.ArcConfiguration
+import com.leo.simplearcloader.SimpleArcDialog
 import kotlinx.android.synthetic.main.make_bid_layout.view.*
 import org.json.JSONObject
 import java.io.FileInputStream
@@ -33,6 +38,7 @@ class ShareAdapter(context:Context,shareride:List<ShareRideModel>,jwttoken:Strin
     val context=context
     val shareride= shareride
     val jwttoken=jwttoken
+    private val sharedPrefFile = "kotlinsharedpreference"
     lateinit var name:String
     override fun getCount(): Int {
         return shareride.count()
@@ -115,20 +121,23 @@ class ShareAdapter(context:Context,shareride:List<ShareRideModel>,jwttoken:Strin
         }
 
         bidbtnadd.setOnClickListener(){
-            val myview= LayoutInflater.from(context).inflate(R.layout.make_bid_layout,null)
-            val mbuilder= AlertDialog.Builder(context).setView(myview).setTitle("Make A Bid")
-            val maalertDialog= mbuilder.show()
+            var myview= LayoutInflater.from(context).inflate(R.layout.make_bid_layout,null)
+            var mbuilder= AlertDialog.Builder(context).setView(myview).setTitle("Make A Bid")
+            var maalertDialog= mbuilder.show()
 
 
             myview.bidBtna.setOnClickListener {
 
                 val BidValue:EditText=myview.findViewById(R.id.bidAmt)
                 val phone:EditText= myview.findViewById(R.id.phonenum)
+
+
                 Log.d("VALUE",BidValue.text.toString())
                 Log.d("NUM",phone.text.toString())
                 if(TextUtils.isEmpty(BidValue.text.toString())||TextUtils.isEmpty(phone.text.toString())) {
                     Log.d("ISEMPTY","Inside if")
                     Toast.makeText(context,"Pls Fill Both Fields!",Toast.LENGTH_LONG).show()
+
                 }
                 else{
                     maalertDialog.hide()
@@ -158,8 +167,8 @@ class ShareAdapter(context:Context,shareride:List<ShareRideModel>,jwttoken:Strin
                             name= s.toString()
 
                         }catch (err:Exception){
-                            Toast.makeText(context,err.toString(),Toast.LENGTH_SHORT).show()
-                            name=""
+
+                            Toast.makeText(context,"Something went wrong",Toast.LENGTH_SHORT).show()
                         }
                         if(name==""){
                             Toast.makeText(context,"Pls Login to make a Bid",Toast.LENGTH_SHORT).show()

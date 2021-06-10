@@ -6,4 +6,6 @@
 
 
     <string name="title_activity_maps">Map Fixed Location</string>
+    <string name="ten"><![CDATA[< 10KM]]></string>
+    <string name="hundred"><![CDATA[<100KM]]></string>
 </resources>
